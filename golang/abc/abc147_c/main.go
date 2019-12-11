@@ -7,31 +7,31 @@ import (
 func main() {
 
 	// 読み込み数取得
-	var countMember uint
-	fmt.Scan(&countMember)
+	var count uint
+	fmt.Scan(&count)
 
-	countMemberComments := make([]uint, countMember)
-	mentionMembers := make([][]uint, countMember)
-	types := make([][]uint, countMember)
+	comments := make([]uint, count)
+	members := make([][]uint, count)
+	types := make([][]uint, count)
 
 	// ユーザーデータ作成
-	for i := uint(0); i < countMember; i++ {
-		fmt.Scan(&countMemberComments[i])
-		mentionMembers[i] = make([]uint, countMemberComments[i])
-		types[i] = make([]uint, countMemberComments[i])
+	for i := uint(0); i < count; i++ {
+		fmt.Scan(&comments[i])
+		members[i] = make([]uint, comments[i])
+		types[i] = make([]uint, comments[i])
 
-		for j := uint(0); j < countMemberComments[i]; j++ {
-			fmt.Scan(&mentionMembers[i][j], &types[i][j])
-			mentionMembers[i][j]-- // メンバーIDは-1してラベルと同じにする
+		for j := uint(0); j < comments[i]; j++ {
+			fmt.Scan(&members[i][j], &types[i][j])
+			members[i][j]-- // メンバーIDは-1してラベルと同じにする
 		}
-		fmt.Printf("%d: %d\n", i, countMemberComments[i])
+		fmt.Printf("%d: %d\n", i, comments[i])
 	}
 
-	fmt.Println(mentionMembers)
+	fmt.Println(members)
 	fmt.Println(types)
 
 	// 全探索
-	iMax := 1 << countMember
+	iMax := 1 << count
 	fmt.Println(iMax)
 
 	// fmt.Printf("%d", result)
