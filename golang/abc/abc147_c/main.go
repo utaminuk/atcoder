@@ -4,6 +4,10 @@ import (
 	"fmt"
 )
 
+func honest(number uint, digit uint) uint {
+	return (number >> digit) & 1
+}
+
 func main() {
 
 	// 読み込み数取得

@@ -1,7 +1,10 @@
-.PHONY: deps run
+.PHONY: deps test run build
 
 deps:
 	go get -u ./...
+
+test:
+	go test
 
 run:
 	go run ./main.go < t1.txt
