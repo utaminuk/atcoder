@@ -4,17 +4,18 @@ import (
 	"fmt"
 )
 
-// 正直者チェック
-func honest(number uint, digit uint) uint {
+// 与えられた状態numberのdigit桁が正直者かどうかのチェック
+func isHonest(number uint, digit uint) uint {
+	// 1とANDを取得すると１桁目の数がとれる。桁数分ずらして比較する
 	return (number >> digit) & 1
 }
 
-// 正直者カウント
-func honetsNum(n uint) uint {
+// 状態numberにおける正直者の数をカウント
+func countHonest(n uint) uint {
 	result := uint(0)
 	for i := 0; n > 0; i++ {
-		// 末尾が1 だったらresultに1追加する
-		if n&1 == 1 {
+		// 末尾が1(正直者)だったらresultに1追加する
+		if (n & 1) == 1 {
 			result++
 		}
 		n >>= 1 // 一桁ずらす
@@ -28,41 +29,43 @@ func main() {
 	var count uint
 	fmt.Scan(&count)
 
-	comments := make([]uint, count)
-	members := make([][]uint, count)
+	countVoices := make([]uint, count)
+	voices := make([][]uint, count)
 	types := make([][]uint, count)
 
 	// ユーザーデータ作成
 	for i := uint(0); i < count; i++ {
-		fmt.Scan(&comments[i])
-		members[i] = make([]uint, comments[i])
-		types[i] = make([]uint, comments[i])
+		fmt.Scan(&countVoices[i])
+		voices[i] = make([]uint, countVoices[i])
+		types[i] = make([]uint, countVoices[i])
 
-		for j := uint(0); j < comments[i]; j++ {
-			fmt.Scan(&members[i][j], &types[i][j])
-			members[i][j]-- // メンバーIDは-1してラベルと同じにする
+		for j := uint(0); j < countVoices[i]; j++ {
+			fmt.Scan(&voices[i][j], &types[i][j])
+			voices[i][j]-- // メンバーIDは-1してラベルと同じにする
 		}
 	}
+
+	// 最終的な回答の初期化
+	answer := uint(0)
 
 	// bit全探索
 	// 2進数を左にSビット論理シフトすると、2^S倍することに相当
 	// 2 ^ ユーザー数 を計算して2bit的に全パターンを取得している
 	max_loop := uint(1) << count
-	// answer := uint(0)
-
-	for i := uint(0); i < max_loop; i++ {
+	for situation := uint(0); situation < max_loop; situation++ {
 
 		ok := true
 
 		// ユーザー数分ループする
-		for j := uint(0); j < count; j++ {
-			if honest(i, j) == 0 {
+		for member := uint(0); member < count; member++ {
+
+			// ユーザーが正直じゃない（嘘つき）だったら何もせずループさせる
+			if isHonest(situation, member) == 0 {
 				continue
 			}
-			fmt.Printf("i: %d | j: %d\n", i, j)
-
-			for k := uint(0); k < comments[j]; k++ {
-				if honest(i, uint(members[j][k])) != types[j][k] {
+			// ユーザー毎の発言をチェックしていく
+			for k := uint(0); k < countVoices[member]; k++ {
+				if isHonest(situation, uint(voices[member][k])) != types[member][k] {
 					ok = false
 					break
 				}
@@ -71,8 +74,11 @@ func main() {
 				break
 			}
 		}
+		if newAnswer := countHonest(situation); ok && newAnswer > answer {
+			answer = newAnswer
+		}
 	}
 
-	// fmt.Printf("%d", result)
+	fmt.Printf("回答: %d\n", answer)
 
 }
