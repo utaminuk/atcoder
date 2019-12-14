@@ -54,17 +54,20 @@ func main() {
 	max_loop := uint(1) << count
 	for situation := uint(0); situation < max_loop; situation++ {
 
+		// 発言に齟齬があるかチェックするフラグ
 		ok := true
 
-		// ユーザー数分ループする
+		// ユーザー数分チェックする
 		for member := uint(0); member < count; member++ {
 
 			// ユーザーが正直じゃない（嘘つき）だったら何もせずループさせる
 			if isHonest(situation, member) == 0 {
 				continue
 			}
-			// ユーザー毎の発言をチェックしていく
+			// ユーザー毎の発言をチェックしていく,一回でも発言に齟齬があったら
 			for k := uint(0); k < countVoices[member]; k++ {
+
+				// チェックの状況と発言が違っている場合は何もせずにループさせる
 				if isHonest(situation, uint(voices[member][k])) != types[member][k] {
 					ok = false
 					break
@@ -74,11 +77,13 @@ func main() {
 				break
 			}
 		}
+		// 正直者回答者をカウントする。今まで保存しているものよりも正直ものが多かったら入れ替える
 		if newAnswer := countHonest(situation); ok && newAnswer > answer {
 			answer = newAnswer
 		}
 	}
 
+	// 解答表示
 	fmt.Printf("回答: %d\n", answer)
 
 }
