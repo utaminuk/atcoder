@@ -5,3 +5,5 @@ const h = +input[0];
 const a = +input[1];
 
 console.log(Math.ceil(h / a));
+// 切り捨ては
+// (h + (a - 1)) / a
