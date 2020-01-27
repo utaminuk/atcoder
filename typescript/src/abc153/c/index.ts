@@ -1,22 +1,18 @@
 import * as fs from 'fs';
 
-const input = fs.readFileSync('/dev/stdin', 'utf8').split(/[ \n]/);
+function main(input: string) {
 
-const n: number = +input[0];
-const k: number = +input[1];
 
-let h: number[] = [];
+  const lines = input.split("\n");
+  const [n, k] = lines[0].split(' ').map((v: string) => +v);
 
-for (let i = 0; i < n; i++) {
-  h[i] = +input[i + 2];
+  const h = lines[1].split(' ')
+    .map((v: string) => +v)
+    .sort((a: number, b: number) => b - a)
+    .slice(k);
+
+  console.log(h.reduce((prev: number, current: number) => prev + current, 0));
 }
 
-h.sort((a, b) => { return (a < b ? 1 : -1); });
-
-let result = 0;
-for (let i = k; i < n; i++) {
-  result += h[i];
-}
-
-console.log(result);
+main(fs.readFileSync('/dev/stdin', 'utf8'));
 
