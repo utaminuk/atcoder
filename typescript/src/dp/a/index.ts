@@ -14,8 +14,6 @@ function main(input: string) {
   let dp: number[] = new Array(n).fill(Infinity);
   dp[0] = 0;
 
-  let result: number = 0;
-
   for (let i = 0; i < n; i++) {
     if (i >= 2) {
       dp[i] = Math.min(dp[i], dp[i - 2] + Math.abs(h[i] - h[i - 2]));
