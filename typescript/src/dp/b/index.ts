@@ -9,7 +9,7 @@ const split_number = (str: string): number[] => {
   return split(str).map((v: string) => +v);
 };
 
-export function main(input: string) {
+function main(input: string) {
   const lines = input.split("\n");
   const [n] = split_number(lines[0]);
 
@@ -26,9 +26,7 @@ export function main(input: string) {
     }
   }
 
-  return dp[n - 1];
+  console.log(dp[n - 1]);
 }
 
-if (!process.env.LOCAL_DEBUG) {
-  console.log(main(fs.readFileSync("/dev/stdin", "utf8")));
-}
+main(fs.readFileSync("/dev/stdin", "utf8"));
