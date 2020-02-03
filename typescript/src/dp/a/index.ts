@@ -26,7 +26,9 @@ export function main(input: string) {
     }
   }
 
-  console.log(dp[n - 1]);
+  return dp[n - 1];
 }
 
-main(fs.readFileSync("/dev/stdin", "utf8"));
+if (!process.env.LOCAL_DEBUG) {
+  console.log(main(fs.readFileSync("/dev/stdin", "utf8")));
+}
