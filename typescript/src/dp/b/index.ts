@@ -9,7 +9,7 @@ const split_number = (str: string): number[] => {
   return split(str).map((v: string) => +v);
 };
 
-export function main(input: string) {
+function main(input: string) {
   const lines = input.split("\n");
   const [n] = split_number(lines[0]);
 
