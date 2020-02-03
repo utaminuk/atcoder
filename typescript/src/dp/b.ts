@@ -2,12 +2,8 @@
 
 import * as fs from "fs";
 
-const split = (str: string): string[] => {
-  return str.split(" ").map((v: string) => v.trim());
-};
-const split_number = (str: string): number[] => {
-  return split(str).map((v: string) => +v);
-};
+const split = (str: string): string[] => str.split(" ").map((v: string) => v.trim());
+const split_number = (str: string): number[] => split(str).map((v: string) => +v);
 
 export function main(input: string) {
   const lines = input.split("\n");
