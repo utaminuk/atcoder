@@ -2,8 +2,11 @@
 
 import * as fs from "fs";
 
+const split = (str: string): string[] => {
+  return str.split(" ").map((v: string) => v.trim());
+};
 const split_number = (str: string): number[] => {
-  return str.split(" ").map((v: string) => +v);
+  return split(str).map((v: string) => +v);
 };
 
 function main(input: string) {
