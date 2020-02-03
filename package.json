@@ -1,14 +1,15 @@
 {
   "name": "atcoder_typescript",
   "version": "1.0.0",
-  "description": "",
+  "description": "Atcoder のコードをTypescriptで回答するためのリポジトリ",
   "main": "index.js",
   "scripts": {
     "start": "ts-node",
     "test": "export LOCAL_DEBUG=1 && jest",
     "test:watch": "export LOCAL_DEBUG=1 && jest --watch"
   },
-  "author": "",
+  "author": "utaminuk",
+  "repository": "https://github.com/utaminuk/atcoder",
   "license": "ISC",
   "dependencies": {
     "ts-node": "^8.6.2"
