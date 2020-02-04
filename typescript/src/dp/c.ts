@@ -7,36 +7,34 @@ const split = (str: string): string[] =>
 const split_number = (str: string): number[] =>
   split(str).map((v: string) => +v);
 
-type PlayType = { a: number; b: number; c: number }[];
-
 export function main(input: string) {
   const lines = input.split("\n");
   const [n] = split_number(lines[0]);
 
   // Playの初期化
-  let play: PlayType = [];
+  let play: number[][] = [];
   for (let i = 0; i < n; i++) {
-    const [a, b, c] = split_number(lines[i + 1]);
-    play[i] = { a, b, c };
+    play[i] = split_number(lines[i + 1]);
   }
 
   // DP値の初期化
-  let dp: { cost: number; selected: string[] }[] = [];
-  for (let i = 0; i < n; i++) {
-    dp[i] = { cost: Infinity, selected: [] };
+  // dp値の一番スタートである0として使うので一つ多い添字を作る
+  let dp: number[][] = [];
+  for (let i = 0; i < n + 1; i++) {
+    dp[i] = [0, 0, 0];
   }
 
-  console.log(dp);
-
-  let costs = [];
   for (let i = 0; i < n; i++) {
-    costs = [];
-    if (dp[i].selected != "A") {
+    for (let j = 0; j < 3; j++) {
+      for (let k = 0; k < 3; k++) {
+        if (j != k) {
+          dp[i + 1][k] = Math.max(dp[i + 1][k], dp[i][j] + play[i][k]);
+        }
+      }
     }
-    dp[i].cost = Math.min();
   }
 
-  return dp[n - 1];
+  return Math.max(...dp[n]);
 }
 
 if (!process.env.LOCAL_DEBUG) {
