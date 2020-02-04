@@ -1,7 +1,7 @@
 import { runTest, AtcoderAnswers } from "./common";
 import { main as mainA } from "../src/dp/a";
 import { main as mainB } from "../src/dp/b";
-
+import { main as mainC } from "../src/dp/c";
 
 describe("dp - A", () => {
   const json = `
@@ -19,4 +19,13 @@ describe("dp - B", () => {
   const params: AtcoderAnswers = JSON.parse(json);
   const customParams: AtcoderAnswers = [];
   runTest(mainB, params, customParams);
+});
+
+describe("dp - C", () => {
+  const json = `
+[["3\\n10 40 70\\n20 50 80\\n30 60 90","210"],["1\\n100 10 1","100"],["7\\n6 7 8\\n8 8 3\\n2 5 2\\n7 8 6\\n4 6 8\\n2 3 4\\n7 5 1","46"]]
+    `;
+  const params: AtcoderAnswers = JSON.parse(json);
+  const customParams: AtcoderAnswers = [];
+  runTest(mainC, params, customParams);
 });

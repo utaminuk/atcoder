@@ -2,28 +2,24 @@
 
 import * as fs from "fs";
 
-const split = (str: string): string[] => {
-  return str.split(" ").map((v: string) => v.trim());
-};
-const split_number = (str: string): number[] => {
-  return split(str).map((v: string) => +v);
-};
+const split = (str: string): string[] => str.split(" ").map((v: string) => v.trim());
+const split_number = (str: string): number[] => split(str).map((v: string) => +v);
 
 export function main(input: string) {
   const lines = input.split("\n");
-  const [n] = split_number(lines[0]);
+  const [n, k] = split_number(lines[0]);
 
   const h: number[] = split_number(lines[1]);
   let dp: number[] = new Array(n).fill(Infinity);
   dp[0] = 0;
 
   for (let i = 0; i < n; i++) {
-    if (i >= 2) {
-      dp[i] = Math.min(dp[i], dp[i - 2] + Math.abs(h[i] - h[i - 2]));
+    for (let j = 1; j < k + 1; j++) {
+      if (i >= j) {
+        dp[i] = Math.min(dp[i], dp[i - j] + Math.abs(h[i] - h[i - j]));
+      }
     }
-    if (i >= 1) {
-      dp[i] = Math.min(dp[i], dp[i - 1] + Math.abs(h[i] - h[i - 1]));
-    }
+
   }
 
   return dp[n - 1];
