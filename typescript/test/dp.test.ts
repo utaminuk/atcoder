@@ -31,11 +31,11 @@ describe("dp - C", () => {
   runTest(mainC, params, customParams);
 });
 
-describe("dp - D", () => {
-  const json = `
-  [["3 8\\n3 30\\n4 50\\n5 60","90"],["5 5\\n1 1000000000\\n1 1000000000\\n1 1000000000\\n1 1000000000\\n1 1000000000","5000000000"],["6 15\\n6 5\\n5 6\\n6 4\\n6 6\\n3 5\\n7 2","17"]]
-    `;
-  const params: AtcoderAnswers = JSON.parse(json);
-  const customParams: AtcoderAnswers = [];
-  runTest(mainD, params, customParams);
-});
+// describe("dp - D", () => {
+//   const json = `
+//   [["3 8\\n3 30\\n4 50\\n5 60","90"],["5 5\\n1 1000000000\\n1 1000000000\\n1 1000000000\\n1 1000000000\\n1 1000000000","5000000000"],["6 15\\n6 5\\n5 6\\n6 4\\n6 6\\n3 5\\n7 2","17"]]
+//     `;
+//   const params: AtcoderAnswers = JSON.parse(json);
+//   const customParams: AtcoderAnswers = [];
+//   runTest(mainD, params, customParams);
+// });
