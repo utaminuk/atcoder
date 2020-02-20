@@ -8,8 +8,13 @@ const split_number = (str: string): number[] =>
 export function main(input: string) {
   const lines = input.split("\n");
   const [n] = split_number(lines[0]);
+  const A = split_number(lines[1]);
 
-  return n;
+  let result = false;
+
+  for(i -)
+
+  return result ? "APPROVED" : "DENIED";
 }
 
 if (!process.env.LOCAL_DEBUG) {
