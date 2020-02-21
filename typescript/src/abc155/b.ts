@@ -10,11 +10,10 @@ export function main(input: string) {
   const [n] = split_number(lines[0]);
   const A = split_number(lines[1]);
 
-  let result = false;
+  const before = A.filter(n => n % 2 === 0);
+  const after = before.filter(n => n % 3 === 0 || n % 5 === 0);
 
-  for(i -)
-
-  return result ? "APPROVED" : "DENIED";
+  return before.length === after.length ? "APPROVED" : "DENIED";
 }
 
 if (!process.env.LOCAL_DEBUG) {
