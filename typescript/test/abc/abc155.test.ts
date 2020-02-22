@@ -1,7 +1,7 @@
 import { runTest, AtcoderAnswers } from "../common";
 import { main as mainA } from "../../src/abc155/a";
 import { main as mainB } from "../../src/abc155/b";
-// import { main as mainC } from "../../src/abc155/c";
+import { main as mainC } from "../../src/abc155/c";
 // import { main as mainD } from "../../src/abc155/d";
 // import { main as mainE } from "../../src/abc155/e";
 // import { main as mainF } from "../../src/abc155/f";
@@ -23,4 +23,13 @@ describe(`${CONTEST} - B`, () => {
   const params: AtcoderAnswers = JSON.parse(json);
   const customParams: AtcoderAnswers = [];
   runTest(mainB, params, customParams);
+});
+
+describe(`${CONTEST} - C`, () => {
+  const json = `
+    [["7\\nbeat\\nvet\\nbeet\\nbed\\nvet\\nbet\\nbeet","beet\\nvet"],["8\\nbuffalo\\nbuffalo\\nbuffalo\\nbuffalo\\nbuffalo\\nbuffalo\\nbuffalo\\nbuffalo","buffalo"],["7\\nbass\\nbass\\nkick\\nkick\\nbass\\nkick\\nkick","kick"],["4\\nushi\\ntapu\\nnichia\\nkun","kun\\nnichia\\ntapu\\nushi"]]
+  `;
+  const params: AtcoderAnswers = JSON.parse(json);
+  const customParams: AtcoderAnswers = [];
+  runTest(mainC, params, customParams);
 });

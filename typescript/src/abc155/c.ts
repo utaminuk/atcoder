@@ -8,8 +8,23 @@ const split_number = (str: string): number[] =>
 export function main(input: string) {
   const lines = input.split("\n");
   const [n] = split_number(lines[0]);
+  let S = lines.slice(1);
+  S.sort();
 
-  return n;
+  let datums: { [keys: string]: number } = {};
+  let max = 0;
+
+  for (let i = 0; i < n; i++) {
+    datums[S[i]] = (datums[S[i]] || 0) + 1;
+    max = max < datums[S[i]] ? datums[S[i]] : max;
+  }
+
+  console.log(datums);
+  const result = Object.keys(datums)
+    .sort()
+    .filter(key => datums[key] === max);
+
+  return result.join("\n");
 }
 
 if (!process.env.LOCAL_DEBUG) {
