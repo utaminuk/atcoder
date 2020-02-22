@@ -9,7 +9,6 @@ export function main(input: string) {
   const lines = input.split("\n");
   const [n] = split_number(lines[0]);
   let S = lines.slice(1);
-  S.sort();
 
   let datums: { [keys: string]: number } = {};
   let max = 0;
@@ -19,7 +18,6 @@ export function main(input: string) {
     max = max < datums[S[i]] ? datums[S[i]] : max;
   }
 
-  console.log(datums);
   const result = Object.keys(datums)
     .sort()
     .filter(key => datums[key] === max);
