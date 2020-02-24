@@ -7,9 +7,13 @@ const split_number = (str: string): number[] =>
 
 export function main(input: string) {
   const lines = input.split("\n");
-  const [n] = split_number(lines[0]);
+  const [n, r] = split_number(lines[0]);
 
-  return n;
+  if (n >= 10) {
+    return r;
+  } else {
+    return r + (100 * (10 - n));
+  }
 }
 
 if (!process.env.LOCAL_DEBUG) {

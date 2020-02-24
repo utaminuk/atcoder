@@ -9,7 +9,7 @@ const CONTEST = `abc156`;
 
 describe(`${CONTEST} - A`, () => {
   const json = `
-    [["0","0"],["0","0"]]
+    [["2 2919","3719"],["22 3051","3051"]]
     `;
   const params: AtcoderAnswers = JSON.parse(json);
   const customParams: AtcoderAnswers = [];
