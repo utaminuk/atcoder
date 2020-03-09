@@ -1,15 +1,15 @@
 import { runTest, AtcoderAnswers } from "../common";
-import { main as mainA } from "../../src/abc156/a";
-import { main as mainB } from "../../src/abc156/b";
-import { main as mainC } from "../../src/abc156/c";
-import { main as mainD } from "../../src/abc156/d";
-import { main as mainE } from "../../src/abc156/e";
-import { main as mainF } from "../../src/abc156/f";
+import { main as mainA } from "../../src/abc158/a";
+import { main as mainB } from "../../src/abc158/b";
+import { main as mainC } from "../../src/abc158/c";
+import { main as mainD } from "../../src/abc158/d";
+import { main as mainE } from "../../src/abc158/e";
+import { main as mainF } from "../../src/abc158/f";
 const CONTEST = `abc156`;
 
 describe(`${CONTEST} - A`, () => {
   const json = `
-    [["2 2919","3719"],["22 3051","3051"]]
+    [["ABA","Yes"],["BBA","Yes"],["BBB","No"]]
     `;
   const params: AtcoderAnswers = JSON.parse(json);
   const customParams: AtcoderAnswers = [];

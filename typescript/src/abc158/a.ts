@@ -7,9 +7,18 @@ const split_number = (str: string): number[] =>
 
 export function main(input: string) {
   const lines = input.split("\n");
-  const [n] = split_number(lines[0]);
+  const n = lines[0].split('');
 
-  return n;
+  let check = "";
+  for (let i = 0; i < n.length; i++) {
+    if (i > 0 && n[i] !== check) {
+      return "Yes";
+    } else {
+      check = n[i];
+    }
+  }
+
+  return "No";
 }
 
 if (!process.env.LOCAL_DEBUG) {
